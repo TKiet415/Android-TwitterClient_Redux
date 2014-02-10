@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ComposeActivity" >
+
+    
+    <TextView
+        android:id="@+id/tvCharsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:maxLength="140"
+        android:text="@string/chars_left"
+        android:textColor="@android:color/darker_gray" />
+
+    <EditText
+        android:id="@+id/etCompose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvCharsLeft"
+        android:layout_below="@+id/tvCharsLeft"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/compose_hint" />
+
+</RelativeLayout>
