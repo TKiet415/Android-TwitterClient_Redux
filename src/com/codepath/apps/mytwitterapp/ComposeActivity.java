@@ -99,8 +99,7 @@ public class ComposeActivity extends Activity {
 									Toast.LENGTH_LONG).show();
 							i.putExtra("jsonTweet", json.toString());
 							setResult(RESULT_OK, i);
-							ComposeActivity.this.finish();
-							super.onSuccess(json);
+							finish();
 						}
 
 						@Override

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import com.activeandroid.ActiveAndroid;
 import com.codepath.apps.mytwitterapp.MyTwitterApp;
 import com.codepath.apps.mytwitterapp.TweetsAdapter;
 import com.codepath.apps.mytwitterapp.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
-
-import android.os.Bundle;
-import android.util.Log;
 
 public class MentionsFragment extends TweetsListFragment {
 	
@@ -25,8 +25,9 @@ public class MentionsFragment extends TweetsListFragment {
 				// TODO Auto-generated method stub
 				Log.d("DEBUG", "adapter count: " + getAdapter().getCount());
 				
-				if (getAdapter().getCount() == 0)
-					getAdapter().addAll(Tweet.fromJson(json));
+				//if (getAdapter().getCount() == 0)
+				getAdapter().clear();
+				getAdapter().addAll(Tweet.fromJson(json));
 				
 				ActiveAndroid.beginTransaction();
 				try {
@@ -82,7 +83,7 @@ public class MentionsFragment extends TweetsListFragment {
 	}
 	
 	@Override
-	protected void fetchTimelineAsync(int i) {
+	public void fetchTimelineAsync(int i) {
 		MyTwitterApp.getRestClient().getMentions(
 				new JsonHttpResponseHandler() {
 					@Override

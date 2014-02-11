@@ -55,7 +55,7 @@ public class UserTimelineFragment extends TweetsListFragment {
 	}
 	
 	@Override
-	protected void fetchTimelineAsync(int i) {
+	public void fetchTimelineAsync(int i) {
 		// TODO Auto-generated method stub
 		updateUserTimeline(-1);
 	}

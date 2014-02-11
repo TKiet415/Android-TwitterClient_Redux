@@ -28,16 +28,6 @@ public class ProfileActivity extends FragmentActivity {
 		User usr = (User) i.getSerializableExtra("user");
 		populateProfileHeader(usr);
 		
-		//name = (String) getIntent().getStringExtra("userinfo");
-		/*MyTwitterApp.getRestClient().getMyInfo(new JsonHttpResponseHandler() {
-			@Override
-			public void onSuccess(JSONObject json) {
-				// TODO Auto-generated method stub
-				User u = User.fromJson(json);
-				getActionBar().setTitle("@" + u.getScreenName());
-				populateProfileHeader(usr);
-			}
-		});*/
 		
 		UserTimelineFragment utf = UserTimelineFragment.newInstance(5, name);
 		Bundle b = new Bundle();
@@ -72,10 +62,4 @@ public class ProfileActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.profile, menu);
 		return true;
 	}
-/*
-	@Override
-	public void onRssItemSelected(String link) {
-		// TODO Auto-generated method stub
-		
-	}*/
 }

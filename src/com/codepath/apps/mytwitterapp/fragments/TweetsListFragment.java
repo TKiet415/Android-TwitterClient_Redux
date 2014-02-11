@@ -3,21 +3,17 @@ package com.codepath.apps.mytwitterapp.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.codepath.apps.mytwitterapp.EndlessScrollListener;
-import com.codepath.apps.mytwitterapp.MyTwitterApp;
 import com.codepath.apps.mytwitterapp.R;
 import com.codepath.apps.mytwitterapp.TweetsAdapter;
 import com.codepath.apps.mytwitterapp.models.Tweet;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 import eu.erikw.PullToRefreshListView;
 import eu.erikw.PullToRefreshListView.OnRefreshListener;
@@ -34,23 +30,16 @@ public class TweetsListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inf, ViewGroup parent,
 			Bundle savedInstanceState) {
 		View v = inf.inflate(R.layout.fragment_tweets_list, parent, false);
+		adapter = new TweetsAdapter(getActivity(), tweets);
+		lvTweets = (PullToRefreshListView) v.findViewById(
+				R.id.lvTweets);
+		lvTweets.setAdapter(adapter);
 		return v;
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		// look at getting fields possibly here tmr...
-
-		// Log.d("DEBUG", tweets.toString());
-
-		adapter = new TweetsAdapter(getActivity(), tweets);
-		lvTweets = (PullToRefreshListView) getActivity().findViewById(
-				R.id.lvTweets);
-		lvTweets.setAdapter(adapter);
-		
-		//getView();
 
 		/*
 		 * ActiveAndroid.beginTransaction(); try { for (Tweet tweetInstance :
@@ -97,24 +86,30 @@ public class TweetsListFragment extends Fragment {
 
 	}
 	
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		// TODO Auto-generated method stub
+		super.startActivityForResult(intent, requestCode);
+	}
+	
 	protected void customLoadMoreDataFromApi(int totalItemsCount) {
-		// Dummy method. Нет надобность для информация
+		// Dummy method. Нет надобности в информации
 	}
 
-	protected void fetchTimelineAsync(int i) {
-		// Dummy method. Нет надобность для информация
+	public void fetchTimelineAsync(int i) {
+		// Dummy method. Нет надобности в информации
 	}
 	
 	public long getMinId() {
 		if (adapter.getCount() == 0)
 			return -1;
 		return adapter.getItem(
-				adapter.getCount()
+				adapter.getCount() - 1
 				).getUid();
 	}
 	
 	public void pushTweet(Tweet tweet) {
-		adapter.insert(tweet, 0);
+		getAdapter().insert(tweet, 0);
 	}
 	
 	public TweetsAdapter getAdapter() {

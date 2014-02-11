@@ -38,8 +38,9 @@ public class HomeTimelineFragment extends TweetsListFragment {
 						// tweets = Tweet.fromJson(jsonTweets);
 						
 						Log.d("DEBUG", "adapter count: " + getAdapter().getCount());
-						if (getAdapter().getCount() == 0)
-							getAdapter().addAll(Tweet.fromJson(jsonTweets));
+						//if (getAdapter().getCount() == 0)
+						getAdapter().clear();
+						getAdapter().addAll(Tweet.fromJson(jsonTweets));
 						
 						//Log.d("DEBUG", "count: " + getAdapter().getCount());
 						
@@ -100,7 +101,7 @@ public class HomeTimelineFragment extends TweetsListFragment {
 	}
 	
 	@Override
-	protected void fetchTimelineAsync(int i) {
+	public void fetchTimelineAsync(int i) {
 		MyTwitterApp.getRestClient().getHomeTimeline(
 				new JsonHttpResponseHandler() {
 					@Override
